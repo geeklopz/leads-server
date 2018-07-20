@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Events Leads 2018</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.33/survey.jquery.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+    <style>
+        .btn-green {
+            background-color: #1ab394;
+            color: #fff;
+            border-radius: 3px;
+        }
+        
+        .btn-green:focus,
+        .btn-green:hover {
+            background-color: #18a689;
+            color: #fff;
+        }
+        
+        .panel-footer {
+            padding: 0 15px;
+            border: none;
+            text-align: right;
+            background-color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="surveyElement"></div>
+    <div id="surveyResult"></div>
+
+    <!-- <script type="text/javascript" src="./index.js"></script> -->
+    <script>
+        Survey.Survey.cssType = "bootstrap";
+        Survey.defaultBootstrapCss.navigationButton = "btn btn-green";
+
+        var json = {
+            questions: [{
+                type: "text",
+                name: "dataRegistro",
+                visible: false,
+                startWithNewLine: false
+            }, {
+                type: "text",
+                name: "nome",
+                title: "Nome",
+                isRequired: true,
+                placeHolder: "Nome"
+            }, {
+                type: "text",
+                name: "sobrenome",
+                title: "Sobrenome",
+                isRequired: true,
+                placeHolder: "Sobrenome"
+            }, {
+                type: "text",
+                name: "idade",
+                title: "Idade",
+                isRequired: true,
+                placeHolder: "Idade"
+            }, {
+                type: "text",
+                name: "email",
+                title: "E-mail",
+                isRequired: true,
+                validators: [{
+                    type: "email"
+                }],
+                inputType: "email",
+                placeHolder: "Digite seu e-mail"
+            }, {
+                type: "text",
+                name: "telefone",
+                title: "Telefone",
+                isRequired: true,
+                placeHolder: "Número do Telefone com DDD"
+            }, {
+                type: "text",
+                name: "cidade",
+                title: "Cidade",
+                isRequired: true,
+                placeHolder: "Cidade"
+            }, {
+                type: "dropdown",
+                name: "uf",
+                title: "Estado",
+                choices: ["item1", "item2", "item3"]
+            }, {
+                type: "text",
+                name: "nomeEmpresa",
+                title: "Empresa que trabalha",
+                isRequired: true,
+                placeHolder: ""
+            }, {
+                type: "dropdown",
+                name: "ramoAtuacao",
+                title: "Ramo de atuação da empresa",
+                choices: ["item1", "item2", "item3"]
+            }, {
+                type: "dropdown",
+                name: "numeroFuncionarios",
+                title: "Número de funcionários",
+                placeHolder: "",
+                choices: ["1-5", "5-10", "10-20"]
+            }, {
+                type: "radiogroup",
+                name: "folhaPagamento",
+                title: "Possui folha de pagamento?",
+                choices: [{
+                    value: "sim",
+                    text: "Sim"
+                }, {
+                    value: "não",
+                    text: "Não"
+                }],
+                colCount: 2
+            }, {
+                type: "radiogroup",
+                name: "eSocial",
+                title: "Possui eSocial?",
+                choices: [{
+                    value: "Sim",
+                    text: "Sim"
+                }, {
+                    value: "Não",
+                    text: "Não"
+                }],
+                colCount: 2
+            }, {
+                type: "dropdown",
+                name: "empresaFolha",
+                title: "Qual empresa fornece a folha de pagamento ? ",
+                choices: [
+                    "BuildUp ",
+                    "item2 ",
+                    "item3 "
+                ]
+            }, {
+                type: "text",
+                name: "perguntaMagica",
+                title: "Elabore uma frase que traduza o que é RH pra você"
+            }]
+        };
+
+        window.survey = new Survey.Model(json);
+
+        survey.onComplete.add(function(sender, options) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:3000/api/leads");
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.send(JSON.stringify(sender.data));
+        });
+
+        /* survey
+            .onComplete
+            .add(function(result) {
+                document
+                    .querySelector('#surveyResult')
+                    .innerHTML = "result: " + JSON.stringify(result.data);
+            }); */
+
+        survey.locale = 'pt';
+
+        $("#surveyElement").Survey({
+            model: survey
+        });
+    </script>
+
+</body>
+
+</html>
