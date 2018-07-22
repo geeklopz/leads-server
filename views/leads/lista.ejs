@@ -1,50 +1,64 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/leadslista.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/leadslista.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+</head>
 
-<body style="padding:5%">
+<body>
 
-    <canvas class="line-chart"> </canvas>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">Leads capturados pelo aplicativo</div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Idade</th>
-                    <th>FP</th>
-                    <th>eSocial</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%for(var i=0; i < lista.length; i++) {%>
-                    <tr>
-                        <td>
-                            <%= lista[i].nome %>
-                        </td>
-                        <td>
-                            <%= lista[i].email %>
-                        </td>
-                        <td class="itemListaValor">
-                            <%= lista[i].idade %>
-                        </td>
-                        <td>
-                            <%= lista[i].folhaPagamento %>
-                        </td>
-                        <td class=" itemListaIdade">
-                            <%= lista[i].eSocial %>
-                        </td>
-                    </tr>
-                    <%}%>
-            </tbody>
-        </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <canvas class="line-chart" height="70"></canvas>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Leads capturados pelo aplicativo</div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Idade</th>
+                                    <th>FP</th>
+                                    <th>eSocial</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i < lista.length; i++) {%>
+                                    <tr>
+                                        <td>
+                                            <%= lista[i].nome %>
+                                        </td>
+                                        <td>
+                                            <%= lista[i].email %>
+                                        </td>
+                                        <td class="itemListaValor">
+                                            <%= lista[i].idade %>
+                                        </td>
+                                        <td>
+                                            <%= lista[i].folhaPagamento %>
+                                        </td>
+                                        <td class=" itemListaIdade">
+                                            <%= lista[i].eSocial %>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="js/leads/lista.js"></script>
 </body>
-
-<script src="js/leads/lista.js"></script>
-
 </html>
