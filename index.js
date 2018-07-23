@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var MongoClient = require('mongodb').MongoClient
+var mongodb = require('mongodb');
 var _db = null
 
 
@@ -21,7 +21,7 @@ app.listen(process.env.PORT || 3000, function() {
 
 //mongodb://<dbuser>:<dbpassword>@ds155490.mlab.com:55490/capiroto
 //MongoClient.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
-MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
     if (err) {
         throw err;
     }
