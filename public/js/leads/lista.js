@@ -9,7 +9,8 @@ var quarentaMaisI = 0;
 
 
 
-var tdItemListValores = document.getElementsByClassName("itemListaValor");
+var tdItemListValores = document.getElementsByClassName("itemLista");
+
 for (var i = 0; i < tdItemListValores.length; i++) {
     var vlr = (parseInt(tdItemListValores[i].textContent));
 
@@ -27,6 +28,7 @@ for (var i = 0; i < tdItemListValores.length; i++) {
 }
 
 var tdItemListIdades = document.getElementsByClassName("itemListaIdade");
+
 for (var i = 0; i < tdItemListIdades.length; i++) {
     var vlr = (parseInt(tdItemListIdades[i].textContent));
 
@@ -50,25 +52,27 @@ function geraGrafico(ctx) {
 
     var chartGraph = new Chart(ctx, {
         type: 'bar',
+        backgroundColor: "#fff",
         data: {
-            labels: ["0 ~ 17", "18 ~ 25", "26 ~ 39", "40+"],
-            datasets: [{
-                label: "Valor dos Ingressos",
-                data: [zeroDezesseteV, dezoitoVinteCincoV, vinteSeisTrintaNoveV, quarentaMaisV],
+            labels: ["18 ~ 25", "25 ~ 40", "40+"],
+            datasets: [/* {
+                label: "Idade dos Leads",
+                data: [dezoitoVinteCincoV, vinteSeisTrintaNoveV, quarentaMaisV],
                 borderColor: "rgb(77,208,225)",
                 backgroundColor: "rgb(77,208,225)"
-            }, {
-                label: "Idade dos Torcedores",
-                data: [zeroDezesseteI, dezoitoVinteCincoI, vinteSeisTrintaNoveI, quarentaMaisI],
-                borderColor: "rgb(77,182,172)",
-                backgroundColor: "rgb(77,182,172)"
+            },  */{
+                label: "Quantidade de Leads por Idade",
+                data: [dezoitoVinteCincoI, vinteSeisTrintaNoveI, quarentaMaisI],
+                borderColor: "rgb(228, 38, 88)",
+                backgroundColor: "rgb(228, 38, 88)"
             }]
         },
         options: {
+            maintainAspectRatio: false,
             title: {
                 display: true,
                 fontSize: 40,
-                text: "Gráfico de Leads"
+                text: "Gráfico de Leads",
             }
         }
     });

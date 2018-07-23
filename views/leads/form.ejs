@@ -9,33 +9,105 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="./index.css"> -->
     <style>
-        .btn-green {
-            background-color: #1ab394;
-            color: #fff;
-            border-radius: 3px;
+        body {
+            background: #e42658;
+            margin: 0;
+            padding: 0;
         }
-        
-        .btn-green:focus,
-        .btn-green:hover {
-            background-color: #18a689;
-            color: #fff;
+
+        .logo {
+            background: #3babe0;
+            text-align: center;
+            padding: 10px 0;
         }
-        
-        .panel-footer {
-            padding: 0 15px;
-            border: none;
-            text-align: right;
-            background-color: #fff;
+
+        .logo img {
+            width: 200px;
+        }
+
+        #surveyElement h5,
+        span {
+            color: #fff;
+            font-weight: bold;
+            font-size: 17px
+        }
+
+        #surveyElement .panel-footer {
+            background: none;
+            border: 0;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .splash-intro, #splash {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: #e42658;
+            position: fixed;
+            top: 0;
+            z-index: 9999999 !important;
+        }
+
+        .splash-intro .modal-content {
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
         }
     </style>
-
 </head>
 
 <body>
-    <div id="surveyElement"></div>
-    <div id="surveyResult"></div>
 
-    <!-- <script type="text/javascript" src="./index.js"></script> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                    <img src="img/logo.png" alt="">
+                </div>
+                <div id="surveyElement"></div>
+                <footer>
+                    <small>Prometemos não utilizar suas informações de contato para enviar qualquer tipo de SPAM.</small>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Splash -->
+    <div id="splash" class="splash-intro">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h1>Participe do nosso concurso cultural e concorra a prêmios!</h1>
+                <span class="btn close">fechar</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("splash");
+        var btn = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
     <script>
         Survey.Survey.cssType = "bootstrap";
         Survey.defaultBootstrapCss.navigationButton = "btn btn-green";
@@ -77,9 +149,16 @@
             }, {
                 type: "text",
                 name: "telefone",
-                title: "Telefone",
+                title: "Telefone ou Celular",
                 isRequired: true,
-                placeHolder: "Número do Telefone com DDD"
+                placeHolder: "Número do Telefone/Celular com DDD"
+            }, {
+                type: "dropdown",
+                name: "uf",
+                title: "Estado",
+                choices: [
+                    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+                ]
             }, {
                 type: "text",
                 name: "cidade",
@@ -87,31 +166,28 @@
                 isRequired: true,
                 placeHolder: "Cidade"
             }, {
-                type: "dropdown",
-                name: "uf",
-                title: "Estado",
-                choices: ["item1", "item2", "item3"]
-            }, {
                 type: "text",
                 name: "nomeEmpresa",
-                title: "Empresa que trabalha",
+                title: "Onde você trabalha?",
                 isRequired: true,
                 placeHolder: ""
             }, {
                 type: "dropdown",
                 name: "ramoAtuacao",
-                title: "Ramo de atuação da empresa",
-                choices: ["item1", "item2", "item3"]
+                title: "Qual é o mercado de atuação da sua empresa?",
+                choices: [
+                    "Autônomo", "Âgência de Comunicação / Digital", "Agência de Turismo / Viagens", "Automação comercial / residencial / industrial", "Beleza", "Concessionária de veículos", "Consultoria de TI / RH / Marketing", "Contabilidade", "Corretora de Seguros", "Distribuidora", "Ecommerce", "Editora", "Educação", "Escritório de advocacia", "Eventos", "Imobiliária", "Importação / Exportação", "Indústria", "Lojista / Loja Física", "Prestador de Serviços", "Representante comercial", "Saúde", "Software", "Startup", "Tecnologia", "Telecomunicações", "Outros"
+                ]
             }, {
                 type: "dropdown",
                 name: "numeroFuncionarios",
-                title: "Número de funcionários",
+                title: "Quantidade de funcionários",
                 placeHolder: "",
-                choices: ["1-5", "5-10", "10-20"]
+                choices: ["1-5", "5-10", "10-20", "20-50", "50-100", "100+"]
             }, {
                 type: "radiogroup",
                 name: "folhaPagamento",
-                title: "Possui folha de pagamento?",
+                title: "Sua empresa possui folha de pagamento?",
                 choices: [{
                     value: "sim",
                     text: "Sim"
@@ -123,7 +199,7 @@
             }, {
                 type: "radiogroup",
                 name: "eSocial",
-                title: "Possui eSocial?",
+                title: "Possuem e-Social?",
                 choices: [{
                     value: "Sim",
                     text: "Sim"
@@ -135,35 +211,27 @@
             }, {
                 type: "dropdown",
                 name: "empresaFolha",
-                title: "Qual empresa fornece a folha de pagamento ? ",
+                title: "Caso tenha e-Social, qual é a empresa que fornece a folha de pagamento?",
                 choices: [
-                    "BuildUp ",
-                    "item2 ",
-                    "item3 "
+                    "BuildUp",
+                    "item2",
+                    "Outros"
                 ]
             }, {
                 type: "text",
                 name: "perguntaMagica",
-                title: "Elabore uma frase que traduza o que é RH pra você"
+                title: "Pronto, estamos quase lá. Mas antes pedimos que você elabore uma frase: O que é RH para você?"
             }]
         };
 
         window.survey = new Survey.Model(json);
 
-        survey.onComplete.add(function(sender, options) {
+        survey.onComplete.add(function (sender, options) {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "http://localhost:3000/api/leads");
             xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             xhr.send(JSON.stringify(sender.data));
         });
-
-        /* survey
-            .onComplete
-            .add(function(result) {
-                document
-                    .querySelector('#surveyResult')
-                    .innerHTML = "result: " + JSON.stringify(result.data);
-            }); */
 
         survey.locale = 'pt';
 
