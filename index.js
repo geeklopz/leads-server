@@ -20,7 +20,8 @@ app.listen(process.env.PORT || 3000, function() {
 });
 
 //mongodb://<dbuser>:<dbpassword>@ds155490.mlab.com:55490/capiroto
-MongoClient.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
+//MongoClient.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     if (err) {
         throw err;
     }
