@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var mongodb = require('mongodb').MongoClient;
+var mongodb = require('mongodb');
 
 var _db = null;
-var url = process.env.MONGODB_URI;
+
 
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
@@ -20,7 +20,7 @@ app.listen(process.env.PORT || 3000, function() {
 });
 
 //mongodb.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
-mongoose.connect(url, function (err, db) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
     if (err) {
         throw err;
     }
