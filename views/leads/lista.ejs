@@ -8,6 +8,7 @@
     <title>Leads Events 2018</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/leadslista.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 </head>
 
@@ -33,12 +34,12 @@
                                     <th>Nome</th>
                                     <th>Email</th>
                                     <th>Idade</th>
-                                    <th>FP</th>
-                                    <th>eSocial</th>
+                                    <!-- <th>FP</th>
+                                    <th>eSocial</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                <%for(var i=0; i < lista.length; i++) {%>
+                                <%for(var i=0; i < 5; i++) {%>
                                     <tr>
                                         <td>
                                             <%= lista[i].nome %>
@@ -49,17 +50,21 @@
                                         <td class="itemListaIdade">
                                             <%= lista[i].idade %>
                                         </td>
-                                        <td>
+<!--                                         <td>
                                             <%= lista[i].folhaPagamento %>
                                         </td>
                                         <td>
                                             <%= lista[i].eSocial %>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     <%}%>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="footer hidden-lg">
+                    <a href="/" class="btn btn-block btn-success">Ver Formulário</a>
+                    <a href="#" class="btn btn-block btn-primary">Exportar para Mailchimp</a>
                 </div>
             </div>
         </div>

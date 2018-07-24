@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Muli");
+/*fonts*/
+/* colors */
+body {
+  font-family: "Muli", sans-serif; }
 
+.navbar {
+  background: #3BABE0; }
 
 /*# sourceMappingURL=style.css.map */

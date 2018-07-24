@@ -71,7 +71,7 @@ function geraGrafico(ctx) {
             maintainAspectRatio: false,
             title: {
                 display: true,
-                fontSize: 40,
+                fontSize: 27,
                 text: "Gráfico de Leads",
             }
         }

@@ -2,14 +2,13 @@ module.exports = function(app, _db) {
 
     app.get('/leads', function(req, res) {
 
-        _db.collection('_events08').find().toArray(function(err, result) {
+        _db.collection('_events08').find().sort({_id: -1}).toArray(function(err, result) {
             if (err) {
                 throw err;
             }
             res.render("leads/lista", { lista: result })
         });
-
-
+        
     });
 
     app.get('/api/leads', function(req, res) {
