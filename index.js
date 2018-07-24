@@ -1,10 +1,10 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var mongodb = require('mongodb');
-var _db = null
-
-
 var app = express();
+var bodyParser = require('body-parser');
+var mongodb = require('mongodb').MongoClient;
+
+var _db = null;
+var url = process.env.MONGODB_URI;
 
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
@@ -19,9 +19,8 @@ app.listen(process.env.PORT || 3000, function() {
     console.log('Server: [OK]');
 });
 
-//mongodb://<dbuser>:<dbpassword>@ds155490.mlab.com:55490/capiroto
-mongodb.MongoClient.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
-//mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
+//mongodb.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
+mongoose.connect(url, function (err, db) {
     if (err) {
         throw err;
     }
