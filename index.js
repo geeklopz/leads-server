@@ -5,7 +5,6 @@ var mongodb = require('mongodb');
 
 var _db = null;
 
-
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
@@ -20,7 +19,8 @@ app.listen(process.env.PORT || 3000, function() {
 });
 
 //mongodb.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function (err, db) {
+    //
     if (err) {
         throw err;
     }

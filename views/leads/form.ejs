@@ -43,27 +43,6 @@
             color: #fff;
             padding: 10px 0;
         }
-
-        .splash-intro, #splash {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh;
-            background-color: #e42658;
-            position: fixed;
-            top: 0;
-            z-index: 9999999 !important;
-        }
-
-        .splash-intro .modal-content {
-            animation-name: animatetop;
-            animation-duration: 0.4s
-        }
-        @keyframes animatetop {
-            from {top: -300px; opacity: 0}
-            to {top: 0; opacity: 1}
-        }
     </style>
 </head>
 
@@ -87,8 +66,11 @@
     <div id="splash" class="splash-intro">
         <div class="modal-content">
             <div class="modal-body">
-                <h1>Participe do nosso concurso cultural e concorra a prêmios!</h1>
-                <span class="btn close">fechar</span>
+                <img src="img/logo.png" alt="" style="width: 200px">
+                <h1>Concurso Cultural BuildUP</h1>
+                <h2>Solução 360° para o seu RH</h2>
+                <p>Prêmio: Workshop sobre: Como implantar “Sem dor” o eSocial na sua empresa.</p>
+                <a class="btn btn-success close">fechar</a>
             </div>
         </div>
     </div>
@@ -212,15 +194,11 @@
                 type: "dropdown",
                 name: "empresaFolha",
                 title: "Caso tenha e-Social, qual é a empresa que fornece a folha de pagamento?",
-                choices: [
-                    "BuildUp",
-                    "item2",
-                    "Outros"
-                ]
+                choices: ["ADP", "Apdata", "Benner", "BuildUp", "Delloite", "LG", "Love Monday", "Pagga", "Propay", "Techware", "Thomson", "Totvs", "Outros"]
             }, {
                 type: "text",
                 name: "perguntaMagica",
-                title: "Pronto, estamos quase lá. Mas antes pedimos que você elabore uma frase: O que é RH para você?"
+                title: "Pronto, estamos quase lá. Mas antes pedimos que você elabore uma frase: O que é a excelência do RH para você"
             }]
         };
 

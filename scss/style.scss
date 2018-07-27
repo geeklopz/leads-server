@@ -8,3 +8,42 @@ body {
 .navbar {
     background: $blue-default;
 }
+
+
+/* SPLASH SCREEN */
+
+.splash-intro, #splash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: $pink-default;
+    position: fixed;
+    top: 0;
+    z-index: 9999999 !important;
+}
+
+.splash-intro .modal-content {
+    width: 100vw;
+    height: 100vh;
+    background: $pink-default;
+    color: $white;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+
+    /* animation */
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/* MODAL */
+.close {
+    opacity: 100%;
+}
