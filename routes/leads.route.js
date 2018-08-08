@@ -1,5 +1,7 @@
 module.exports = function(app, _db) {
 
+
+    // GET ALL LEADS (RENDER PAGE)
     app.get('/leads', function(req, res) {
 
         _db.collection('_events08').find().sort({_id: -1}).toArray(function(err, result) {
@@ -11,6 +13,7 @@ module.exports = function(app, _db) {
         
     });
 
+    // GET ALL LEADS (JSON)
     app.get('/api/leads', function(req, res) {
 
         _db.collection('_events08').find().toArray(function(err, result) {
@@ -22,6 +25,7 @@ module.exports = function(app, _db) {
 
     });
 
+    // POST LEAD API
     app.post('/api/leads', function(req, res) {
 
         try {

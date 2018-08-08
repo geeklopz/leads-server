@@ -19,7 +19,7 @@ app.listen(process.env.PORT || 3000, function() {
 });
 
 //mongodb.connect('mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function(err, db) {
-mongodb.connect(process.env.MONGODB_URI || 'mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function (err, db) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://buildup:buildupevents08@ds243441.mlab.com:43441/events-lead', function (err, db) {
     //
     if (err) {
         throw err;
