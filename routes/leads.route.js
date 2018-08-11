@@ -33,11 +33,12 @@ module.exports = function(app, _db) {
             var collection = _db.collection('_events08');
             collection.save(req.body);
 
-            res.send(200);
+            //res.send(200);
 
-            //.then(function(result) {
-            //    res.statusCode(200).send(res.statusCode);
-            //})
+            .then(function(result) {
+                res.statusCode(200).send(result);
+            })
+            .catch(error => res.statusCode(error).send(error))
 
             //document
             /*
